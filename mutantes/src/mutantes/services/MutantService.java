@@ -25,7 +25,7 @@ public class MutantService {
     
     private Boolean validateDna(String[] dna) {
         
-        Boolean isOk = Boolean.TRUE;
+        Boolean isNB = Boolean.TRUE, isSquareMatrix = Boolean.TRUE;
         Integer inf, sup, dimDna = 0;
         
         for(String seqDna: dna) {
@@ -35,23 +35,23 @@ public class MutantService {
             dimDna += seqDna.length();
             
             do {
-                isOk = NBL.contains(seqDna.substring(inf, sup));
+                isNB = NBL.contains(seqDna.substring(inf, sup)); // Sus caracteres corresponden al de la base nitrogenada
                 dnaToString = dnaToString.concat(seqDna.substring(inf, sup));
                 inf++;
                 sup++;
-            } while(sup <= seqDna.length() && isOk);
+            } while(sup <= seqDna.length() && isNB);
             
-            if(!isOk) {break;}
+            if(!isNB) {break;}
             
         }
         
-        if(isOk) {
+        if(isNB) {
             Double exactSqrt = Math.sqrt(dimDna);
-            isOk = exactSqrt == Math.round(exactSqrt);
-            if(isOk) {dim = (int) Math.round(exactSqrt);}
+            isSquareMatrix = exactSqrt == Math.round(exactSqrt); // Puede ser representada como matriz NxN
+            if(isSquareMatrix) {dim = (int) Math.round(exactSqrt);}
         }
         
-        return isOk;
+        return isNB && isSquareMatrix;
         
     }
     
@@ -269,7 +269,7 @@ public class MutantService {
         
         if(!validateDna(dna)) {throw new Exception("ERROR: el adn no es valido.");}
         
-        String[][] dnaMatrix = vectToMatrix(dna);
+        String[][] dnaMatrix = stringToMatrix();
         
         allDiagsPrin(dnaMatrix);
         allDiagsSec(dnaMatrix);
@@ -289,7 +289,7 @@ public class MutantService {
             System.out.println("\nSe encontraron " + coincidences + " coincidencias.");
         }
         else {System.out.println("El individuo es un ser humano.\n");}
-        printMatrix(vectToMatrix(dna));
+        printMatrix(stringToMatrix());
     }
     
     /*------------------ Herramientas y formato --------------------*/
@@ -308,7 +308,7 @@ public class MutantService {
     }
     
     // Toma un vector, lo transforma en matriz y lo retorna
-    private String[][] vectToMatrix(String[] vect) {
+    private String[][] stringToMatrix() {
         String[][] matrix = new String[dim][dim];
         Integer inf = 0, sup = 1;
         for(int i = 0; i < dim; i++) {
