@@ -2,6 +2,7 @@ package mutantes.services;
 
 import java.io.IOException;
 import java.util.Objects;
+import mutantes.exceptions.InvalidDNAException;
 
 public class MutantService {
     
@@ -23,13 +24,12 @@ public class MutantService {
         que pueda ser representada en una matriz cuadrada (NxN))
     */ 
     
-    private Boolean validateDna(String[] dna) {
+    private Boolean validateDna(String[] dna) throws InvalidDNAException {
         
-        Boolean isNB = Boolean.TRUE, isSquareMatrix = Boolean.TRUE;
+        Boolean isNB = Boolean.FALSE, isSquareMatrix = Boolean.FALSE;
         Integer inf, sup, dimDna = 0;
         
         for(String seqDna: dna) {
-            
             inf = 0; 
             sup = 1;
             dimDna += seqDna.length();
@@ -50,6 +50,10 @@ public class MutantService {
             isSquareMatrix = exactSqrt == Math.round(exactSqrt); // Puede ser representada como matriz NxN
             if(isSquareMatrix) {dim = (int) Math.round(exactSqrt);}
         }
+        
+        if(!isNB) {throw new InvalidDNAException("INFO: La muestra posee caracteres que no coinciden con la base nitrogenada.");}
+        if(!isSquareMatrix) {throw new InvalidDNAException("INFO: La muestra no puede ser representada en una matriz NxN.");}
+        
         
         return isNB && isSquareMatrix;
         
@@ -265,9 +269,9 @@ public class MutantService {
     }
     
     /*--------- INDICA SI EL SUJETO ES MUTANTE O NO ---------*/
-    private Boolean isMutant(String[] dna) throws Exception {
+    private Boolean isMutant(String[] dna) throws InvalidDNAException {
         
-        if(!validateDna(dna)) {throw new Exception("ERROR: el adn no es valido.");}
+        validateDna(dna);
         
         String[][] dnaMatrix = stringToMatrix();
         
@@ -283,7 +287,7 @@ public class MutantService {
         Toma la muestra (dna) y la procesa, indicando si el sujeto es mutante o no. Luego imprime
         por pantalla la muestra de adn con formato de matriz.
     */
-    public void processDna(String[] dna) throws Exception {
+    public void processDna(String[] dna) throws InvalidDNAException {
         if(isMutant(dna)) {
             System.err.println("El individuo es un mutante.\n");
             System.out.println("\nSe encontraron " + coincidences + " coincidencias.");

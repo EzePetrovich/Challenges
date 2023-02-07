@@ -1,14 +1,15 @@
 package mutantes;
 
+import mutantes.exceptions.InvalidDNAException;
 import mutantes.services.MutantService;
 
 public class Main {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         
         String[] dna1 = {"ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTG"}; // Prueba 1
         
-        String[] dna2 = {"ATGCGACA", "CAGTGCTG", "TTATGTGG", "AGAAGACG", "CCACCCTA", "TCAAGCTG", "CAGTGCCG", "AGAAGACC"}; // Prueba 2
+        String[] dna2 = {"ATGCGACA", "CAGTGCTG", "TTATGTGG", "AGAAGACG", "CCACCCTC", "TCAAGCTG", "CAGTGCCG", "AGAAGACC"}; // Prueba 2
         
         String[] dna3 = {"AAAAAA", "AAGGGA", "GCTGTA", "GGCTGA", "GAGCTG", "GAAGCT"}; // Prueba 3
         
@@ -16,7 +17,12 @@ public class Main {
         
         MutantService ms = new MutantService();
         
-        ms.processDna(dna2);
+        try {
+            ms.processDna(dna2);
+        } catch (InvalidDNAException ex) {
+            System.err.println("ERROR: muestra de adn invalida.");
+            System.out.println(ex.getMessage());
+        }
         
     }
     
