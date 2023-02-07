@@ -307,7 +307,7 @@ public class MutantService {
         }
     }
     
-    // Toma un vector, lo transforma en matriz y lo retorna
+    // Toma el string de atributo, lo transforma en matriz y lo retorna
     private String[][] stringToMatrix() {
         String[][] matrix = new String[dim][dim];
         Integer inf = 0, sup = 1;
