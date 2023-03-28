@@ -1,0 +1,290 @@
+:root {
+    --hue: 120;
+    --saturation: 150%;
+    --lightness: 30%;
+    --more: 5%;
+}
+
+.header-biblioteca {
+    background-color: #38a238!important;
+    padding: 1rem!important;
+    color: white!important;
+    text-align: right!important;
+}
+
+#logoBiblioteca {
+    position: absolute;
+    height: 100px;
+    top: .75rem;
+    left: 2rem;
+}
+
+h2 {
+    text-align: center;
+    font-family: "Yu Gothic";
+}
+
+h5 {
+    text-align: center;
+    font-family: "Yu Gothic";
+}
+
+.dropbtn {
+    background-color: transparent;
+    color: white;
+    font-size: 16px;
+    border: 2px solid white;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .1s;
+}
+
+.dropbtn img {
+    height: 90px;
+    width: 90px;
+}
+
+.dropdown {
+    padding: 2px;
+    margin-right: 3rem;
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    width: 100%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    box-shadow: 0 0 1px 0 black;
+    text-decoration: none;
+    text-align: left;
+    display: block;
+}
+
+.dropdown-content a:hover { background-color: #f1f1f1 }
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    transform: translateY(.5rem);
+    transition: 1s;
+}
+
+.dropdown:hover .dropbtn { scale: 1.2; }
+
+.content-back {
+    background: url(../img/bg4.jpg) no-repeat center fixed;
+    background-size: cover;
+    padding: 10rem 22rem !important;
+}
+
+.content-back-table {
+    background: url(../img/bg4.jpg) no-repeat center fixed;
+    background-size: cover;
+    padding: 10rem !important;
+}
+
+.content-in {
+    background: rgb(255, 255, 255, .8);
+    padding: 3rem 2rem;
+    border-color: transparent;
+    border-radius: 10px;
+}
+
+.content-in-table {
+    background: rgb(255, 255, 255, .8);
+    width: 100%;
+    padding: 1rem;
+    border-color: transparent;
+    border-radius: 10px;
+}
+
+.content-form { padding: .5rem; }
+
+#searchDiv { 
+    display: inline-flex;
+    align-items: center;
+}
+
+#searchDiv label {
+    padding-right: 3px;
+}
+
+#searchButton {
+    border-color: transparent;
+    padding: 0;
+    margin: 0;
+}
+
+#searchImg { 
+    height: 35px;
+}
+
+.table-entity { 
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.table-entity tr:nth-child(even) { 
+    padding-left: 10px;
+    background-color: snow;
+}
+
+.table-entity tr:hover { background-color: #DDD; }
+
+.table-entity th {
+    padding: 12px 0 12px 10px;
+    text-align: left;
+    background-color: #38a238;
+    color: white;
+}
+
+.table-entity td { padding-left: 10px; }
+
+.btn-form {
+    background-color: hsl(var(--hue), var(--saturation), var(--lightness));
+    border: 1px solid transparent;
+    color: white;
+    float: right!important;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.btn-form:hover { background-color: hsl(var(--hue), var(--saturation), calc(var(--lightness) + var(--more))); }
+
+/*---------------------------------*/
+
+:root {
+    --form-control-color: #38c925;
+    --form-control-disabled: #959495;
+}
+
+input[type="checkbox"] {
+    /* Add if not using autoprefixer */
+    -webkit-appearance: none;
+    /* Remove most all native input styles */
+    appearance: none;
+    /* Not removed via appearance */
+    margin: 0;
+    background-color: white;
+    font: inherit;
+    color: currentColor;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.1em solid currentColor;
+    border-radius: 0.15em;
+    transform: translateY(-0.075em);
+    display: inline-flex;
+    align-items: center;
+    place-content: center;
+}
+
+input[type="checkbox"]::before {
+    content: "";
+    width: 0.65em;
+    height: 0.65em;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+    transform: scale(0);
+    transform-origin: bottom left;
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em var(--form-control-color);
+}
+
+input[type="checkbox"]:checked::before {
+    transform: scale(1);
+}
+
+input[type="checkbox"]:focus {
+    outline: max(1px, 0.1em) solid currentColor;
+    outline-offset: max(2px, 0.1em);
+}
+
+input[type="checkbox"]:disabled {
+    --form-control-color: var(--form-control-disabled);
+
+    color: var(--form-control-disabled);
+    cursor: not-allowed;
+}
+
+/*---------------------------------*/
+
+label { margin: 1rem 0; }
+
+input[type="text"]:disabled { background-color: #DDD; }
+
+.msg-info {
+    border: transparent;
+    text-align: center;
+    width: min-content;
+    margin-left: 12rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    animation-name: animatetop;
+    animation-duration: .5s;
+}
+
+@keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+}
+
+.msg-error-bg { background-color: rgba(220, 20, 60, 0.75); }
+
+.msg-success-bg { background-color: rgba(56, 162, 56, 0.75); }
+
+.msg-info p {
+    text-align: center;
+    color: white;
+    padding-bottom: .2rem;
+}
+
+.head-msg {
+    display: inline-flex;
+    color: white;
+    padding: 0 .5rem;
+    align-items: center;
+    flex-direction: row;
+    border-bottom: 1px solid white;
+}
+
+.head-msg h5 { margin-top: .4rem; }
+
+.close {
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    margin: 0 0 0 5.1rem;
+}
+
+.close:hover,
+.close:focus {
+    scale: 1.2;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.footer-biblioteca {
+    background-color: #212529!important;
+    color: white!important;
+    text-align: center!important;
+    font-family: "Yu Gothic";
+    padding: 1.5rem!important;
+}

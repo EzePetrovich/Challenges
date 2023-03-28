@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link th:href="@{/css/styles-forms.css}" href="../static/css/styles-forms.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="icon" th:href="@{/img/Favicon.ico}" href="../static/img/Favicon.ico" type="image/x-icon">
+        <title>Registro libro</title>
+    </head>
+
+    <body>
+
+        <header>
+            <div class="header-biblioteca">
+                <a th:href="@{/}" href="index.html"><img id="logoBiblioteca" th:src="@{/img/bibliotecapp-logo.png}" src="../static/img/bibliotecapp-logo.png" alt="logo biblioteca"></a>
+                <nav>
+                    <div class="dropdown">
+                        <button class="dropbtn"><img th:src="@{/img/logo-author.png}" src="../static/img/logo-author.png" alt="author-logo"></button>
+                        <div class="dropdown-content">
+                            <a th:href="@{/author/toRegister}" href="author_createForm.html">CREAR</a>
+                            <a th:href="@{/author/toModify}" href="author_modifyForm.html">MODIFICAR</a>
+                            <a th:href="@{/author/toRemove}" href="author_removeForm.html">REMOVER</a>
+                            <a th:href="@{/author/toConsult}" href="author_consultTable.html">CONSULTAR</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <button class="dropbtn"><img th:src="@{/img/logo-editorial.png}" src="../static/img/logo-editorial.png" alt="editorial-logo"></button>
+                        <div class="dropdown-content">
+                            <a th:href="@{/editorial/toRegister}" href="editorial_createForm.html">CREAR</a>
+                            <a th:href="@{/editorial/toModify}" href="editorial_modifyForm.html">MODIFICAR</a>
+                            <a th:href="@{/editorial/toRemove}" href="editorial_removeForm.html">REMOVER</a>
+                            <a th:href="@{/editorial/toConsult}" href="editorial_consultTable.html">CONSULTAR</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <button class="dropbtn"><img th:src="@{/img/logo-book.png}" src="../static/img/logo-book.png" alt="book-logo"></button>
+                        <div class="dropdown-content">
+                            <a th:href="@{/book/toRegister}" href="book_createForm.html">CREAR</a>
+                            <a th:href="@{/book/toModify}" href="book_modifyForm.html">MODIFICAR</a>
+                            <a th:href="@{/book/toRemove}" href="book_removeForm.html">REMOVER</a>
+                            <a th:href="@{/book/toConsult}" href="book_consultTable.html">CONSULTAR</a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <div class="content-back">
+            <div class="content-in">
+                <h2>CREAR LIBRO</h2>
+                <form class="formBook" action="/book/toRegister" method="POST">
+                    <div class="content-form">
+                        <label for="isbn" class="form-label">ISBN:</label>
+                        <input type="text" class="form-control" id="isbn" placeholder="ISBN de libro" name="isbn">
+                        <label for="title" class="form-label">Título:</label>
+                        <input type="text" class="form-control" id="title" placeholder="Título de libro" name="title">
+                        <label for="exemplars" class="form-label">Ejemplares:</label>
+                        <input type="text" class="form-control" id="exemplars" placeholder="Ejemplares disponibles" name="exemplars">
+                        <label for="nameAuthor" class="form-label">Autor:</label>
+                        <div class="select-entity" id="nameAuthor">
+                            <select name="nameAuthor">
+                                <option>Seleccione un autor</option>
+                                <option th:each="author : ${authors}"  th:if="${author.removed} == false" th:value="${author.name}" th:text="${author.name}"/>
+                            </select>
+                        </div>
+                        <label for="nameEditorial" class="form-label">Editorial:</label>
+                        <div class="select-entity" id="nameEditorial">
+                            <select name="nameEditorial">
+                                <option>Seleccione una editorial</option>
+                                <option th:each="editorial : ${editorials}" th:if="${editorial.removed} == false" th:value="${editorial.name}" th:text="${editorial.name}"/>
+                            </select>
+                        </div>
+                    </div>
+                    <div th:if="${success != null}">
+                        <div class="msg msg-info msg-success-bg">
+                            <div class="head-msg">
+                                <h5>¡ÉXITO!</h5>
+                                <span class="close">&times;</span>
+                            </div>
+                            <p th:text="${success}"></p>
+                        </div>
+                    </div>
+                    <div th:if="${error != null}">
+                        <div class="msg msg-info msg-error-bg">
+                            <div class="head-msg">
+                                <h5>ERROR</h5>
+                                <span class="close">&times;</span>
+                            </div>
+                            <p th:text="${error}"></p>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-form">Submit</button>
+                </form>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-biblioteca">
+                <p>| BibliotecApp Spring Boot © | 2023</p>
+            </div>
+        </footer>
+
+        <script src="../static/js/quit-msg-script.js" th:src="@{/js/quit-msg-script.js}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    </body>
+
+</html>

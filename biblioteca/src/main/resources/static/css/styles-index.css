@@ -1,0 +1,80 @@
+:root { --btnColor: #3ac53a!important; }
+
+.header-biblioteca {
+    background-color: #38a238!important;
+    padding: 1rem!important;
+    color: white!important;
+    text-align: right!important;
+}
+
+#logoBiblioteca {
+    position: absolute;
+    height: 100px;
+    top: .75rem;
+    left: 2rem;
+}
+
+.dropbtn {
+    background-color: transparent;
+    color: white;
+    font-size: 16px;
+    border: 2px solid white;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .1s;
+}
+
+.dropbtn img { 
+    height: 90px;
+    width: 90px;
+ }
+  
+.dropdown {
+    padding: 2px;
+    margin-right: 3rem;
+    position: relative;
+    display: inline-block;
+}
+  
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    width: 100%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    box-shadow: 0 0 1px 0 black;
+    text-decoration: none;
+    text-align: left;
+    display: block;
+}
+  
+.dropdown-content a:hover { background-color: #f1f1f1 }
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    transform: translateY(.5rem);
+    transition: 1s;
+}
+  
+.dropdown:hover .dropbtn { scale: 1.2; }
+
+.container-biblioteca {
+    background: url(../img/bg4.jpg) no-repeat center fixed;
+    background-size: cover;
+    padding: 15rem;
+}
+
+.footer-biblioteca {
+    background-color: #212529!important;
+    color: white!important;
+    text-align: center!important;
+    font-family: "Yu Gothic";
+    padding: 1.5rem!important;
+}
+
